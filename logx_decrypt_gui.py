@@ -12,6 +12,7 @@ import concurrent.futures
 import queue
 import threading
 
+
 def bitrev(b: int) -> int:
     """单字节bit位反转，锐捷logx加密算法"""
     b = ((b & 0xAA) >> 1) | ((b & 0x55) << 1)
@@ -196,9 +197,15 @@ class LogxDecryptGUI:
 
 
 def main():
-    root = tk.Tk()
-    app = LogxDecryptGUI(root)
-    root.mainloop()
+    try:
+        root = tk.Tk()
+        app = LogxDecryptGUI(root)
+        root.mainloop()
+    except Exception as e:
+        import tkinter.messagebox
+        tkinter.messagebox.showerror("程序启动失败", f"GUI初始化异常：{str(e)}")
+        print(f"GUI Exception: {e}")
+        input("\n按回车退出...")
 
 
 if __name__ == "__main__":
