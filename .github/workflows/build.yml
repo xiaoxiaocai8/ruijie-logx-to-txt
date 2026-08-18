@@ -15,17 +15,17 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install pyinstaller
+      - name: Install packages
         run: |
           python -m pip install --upgrade pip
-          pip install pyinstaller
+          pip install pyinstaller pyinstaller-hooks-contrib
 
-      - name: Build single exe
+      - name: Build exe（保留控制台调试，先不要加 -w）
         run: |
-          pyinstaller -F -c logx_decrypt.py
+          pyinstaller -F logx_decrypt_gui.py --additional-hooks-dir=%PYTHONPATH%\pyinstaller_hooks_contrib\hooks
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: logx_decrypt-windows
-          path: dist/logx_decrypt.exe
+          path: dist/logx_decrypt_gui.exe
