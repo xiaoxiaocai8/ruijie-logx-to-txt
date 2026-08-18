@@ -22,10 +22,10 @@ jobs:
 
       - name: Build exe（保留控制台调试，先不要加 -w）
         run: |
-          pyinstaller -F logx_decrypt_gui.py --additional-hooks-dir=%PYTHONPATH%\pyinstaller_hooks_contrib\hooks
+          pyinstaller -F logx_decrypt.py --additional-hooks-dir=%PYTHONPATH%\pyinstaller_hooks_contrib\hooks
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: logx_decrypt-windows
-          path: dist/logx_decrypt_gui.exe
+          path: dist/logx_decrypt.exe
